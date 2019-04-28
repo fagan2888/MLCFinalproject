@@ -10,7 +10,7 @@ class CNNModel(nn.Module):
         self.resnet.fc = nn.Sequential(
             nn.Linear(2048, 128, bias=False),
             nn.ReLU(),
-            nn.Linear(128, nclasses bias=False)
+            nn.Linear(128, nclasses, bias=False)
 
     def forward(self, x):
         x = self.resnet(x)
