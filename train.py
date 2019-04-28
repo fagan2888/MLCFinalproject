@@ -49,7 +49,7 @@ def validation(epoch, model, val_loader):
         for data, target in val_loader:
             data, target = Variable(data).cuda(), Variable(target).cuda()
             output = model(data)
-            validation_loss += F.nll_loss(output, target, reduction='sum').item()
+            validation_loss += F.cross_entropy(output, target, reduction='sum').item()
             pred = output.data.max(1, keepdim=True)[1]
             correct += pred.eq(target.data.view_as(pred)).cpu().sum()
 
@@ -102,4 +102,4 @@ if __name__ == "__main__":
                         help='how many batches to wait before logging training status')
     args = parser.parse_args()
 
-run(args)
+    run(args)
