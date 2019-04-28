@@ -28,7 +28,7 @@ def train(epoch, model, optimizer, train_loader, log_interval):
         total_imgs += target.size(0)
         accurate_count += (predicted == target).sum().item()
 
-        loss = F.nll_loss(output, target)
+        loss = F.cross_entropy(output, target)
         loss.backward()
         optimizer.step()
         losses.append(loss.item())
@@ -65,11 +65,11 @@ def validation(epoch, model, val_loader):
 def run(args):
     train_loader = torch.utils.data.DataLoader(
         datasets.ImageFolder(args.data + '/train', transform=data_transforms),
-        batch_size=args.batch_size, shuffle=True, num_workers=4)                #change num_workers = 4
+        batch_size=args.batch_size, shuffle=True, num_workers=1)
 
     val_loader = torch.utils.data.DataLoader(
         datasets.ImageFolder(args.data + '/val', transform=validation_data_transforms),
-        batch_size=args.batch_size, shuffle=False, num_workers=4)               #change num_workers = 4
+        batch_size=args.batch_size, shuffle=False, num_workers=1)
 
     model = CNNModel()
     model.cuda()
