@@ -102,4 +102,4 @@ if __name__ == "__main__":
                         help='how many batches to wait before logging training status')
     args = parser.parse_args()
 
-    run(args)
+run(args)
