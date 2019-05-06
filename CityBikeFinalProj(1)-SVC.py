@@ -225,7 +225,7 @@ x = res.iloc[:,1:]
 # In[146]:
 
 
-x['datetime'] = x['datetime'].astype('category').cat.codes
+#x['datetime'] = x['datetime'].astype('category').cat.codes
 x['icon'] = x['icon'].astype('category').cat.codes
 x['holiday'] = x['holiday'].astype('category').cat.codes
 x['weekday'] = x['weekday'].astype('category').cat.codes
